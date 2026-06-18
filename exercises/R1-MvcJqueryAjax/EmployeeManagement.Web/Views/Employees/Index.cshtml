@@ -1,0 +1,115 @@
+@model EmployeeManagement.Web.ViewModels.EmployeesPageViewModel
+
+@{
+    ViewData["Title"] = "Gestión de Empleados";
+}
+
+<h1>Gestión de Empleados</h1>
+
+<p>Primer ejercicio MVC para PROCOMER.</p>
+
+<hr />
+
+<h2>Registro de Empleado</h2>
+
+<form id="employeeForm" asp-action="Create" method="post">
+
+    <div>
+        <label asp-for="Form.FullName">Nombre Completo</label>
+        <input asp-for="Form.FullName" />
+        <span asp-validation-for="Form.FullName" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <div>
+        <label asp-for="Form.Email">Correo Electrónico</label>
+        <input asp-for="Form.Email" type="email" />
+        <span asp-validation-for="Form.Email" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <div>
+        <label asp-for="Form.DepartmentId">Departamento</label>
+
+        <select asp-for="Form.DepartmentId">
+
+            <option value="">
+                Seleccione un departamento
+            </option>
+
+            @foreach (var department in Model.Departments)
+            {
+                <option value="@department.Id">
+                    @department.Name
+                </option>
+            }
+
+        </select>
+
+        <span asp-validation-for="Form.DepartmentId" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <div>
+        <label asp-for="Form.MonthlySalary">Salario Mensual</label>
+        <input asp-for="Form.MonthlySalary" />
+        <span asp-validation-for="Form.MonthlySalary" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <div>
+        <label asp-for="Form.HireDate">Fecha de Contratación</label>
+        <input asp-for="Form.HireDate" type="date" />
+        <span asp-validation-for="Form.HireDate" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <button type="submit">
+        Guardar
+    </button>
+
+</form>
+
+<hr />
+
+<h2>Empleados Registrados</h2>
+
+<p id="emptyEmployeesMessage" style="@(Model.Employees.Any() ? "display:none;" : "")">
+    No hay empleados registrados.
+</p>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Departamento</th>
+            <th>Salario</th>
+            <th>Bonificación</th>
+        </tr>
+    </thead>
+
+    <tbody id="employeesTableBody">
+        @foreach (var employee in Model.Employees)
+        {
+            <tr>
+                <td>@employee.FullName</td>
+                <td>@employee.Email</td>
+                <td>@employee.DepartmentName</td>
+                <td>@employee.MonthlySalary</td>
+                <td>@employee.AnnualBonus</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/employees.js"></script>
+}
