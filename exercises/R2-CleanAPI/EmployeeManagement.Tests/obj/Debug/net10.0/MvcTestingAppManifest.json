@@ -1,6 +1,0 @@
-{
-  "EmployeeManagement.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\ProcomerPractice\\exercises\\R2-CleanAPI\\EmployeeManagement.Api",
-  "EmployeeManagement.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\ProcomerPractice\\exercises\\R2-CleanAPI\\EmployeeManagement.Application",
-  "EmployeeManagement.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\ProcomerPractice\\exercises\\R2-CleanAPI\\EmployeeManagement.Domain",
-  "EmployeeManagement.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\ProcomerPractice\\exercises\\R2-CleanAPI\\EmployeeManagement.Infrastructure"
-}
