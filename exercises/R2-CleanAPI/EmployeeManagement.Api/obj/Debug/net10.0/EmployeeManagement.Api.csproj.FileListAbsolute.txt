@@ -37,3 +37,6 @@ C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Api\obj\Debug\net10
 C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Api\obj\Debug\net10.0\EmployeeManagement.Api.pdb
 C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Api\obj\Debug\net10.0\EmployeeManagement.Api.genruntimeconfig.cache
 C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Api\obj\Debug\net10.0\ref\EmployeeManagement.Api.dll
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Api\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Api\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Api\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
