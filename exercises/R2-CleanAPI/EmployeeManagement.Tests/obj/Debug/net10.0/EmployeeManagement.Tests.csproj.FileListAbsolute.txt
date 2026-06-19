@@ -102,3 +102,4 @@ C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Tests\obj\Debug\net
 C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Tests\obj\Debug\net10.0\EmployeeManagement.Tests.pdb
 C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Tests\obj\Debug\net10.0\EmployeeManagement.Tests.genruntimeconfig.cache
 C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Tests\obj\Debug\net10.0\ref\EmployeeManagement.Tests.dll
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Tests\bin\Debug\net10.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll

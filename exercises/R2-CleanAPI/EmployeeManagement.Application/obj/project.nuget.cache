@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "hOK5VZFqvlI=",
+  "dgSpecHash": "AeHrRn4964g=",
   "success": true,
   "projectFilePath": "C:\\ProcomerPractice\\exercises\\R2-CleanAPI\\EmployeeManagement.Application\\EmployeeManagement.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\pblanco\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.9\\microsoft.extensions.dependencyinjection.abstractions.10.0.9.nupkg.sha512"
+  ],
   "logs": []
 }

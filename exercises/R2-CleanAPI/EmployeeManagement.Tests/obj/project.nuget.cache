@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "oK+iugpAA/E=",
+  "dgSpecHash": "orB7zkFlECU=",
   "success": true,
   "projectFilePath": "C:\\ProcomerPractice\\exercises\\R2-CleanAPI\\EmployeeManagement.Tests\\EmployeeManagement.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pblanco\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
     "C:\\Users\\pblanco\\.nuget\\packages\\microsoft.codecoverage\\17.14.1\\microsoft.codecoverage.17.14.1.nupkg.sha512",
+    "C:\\Users\\pblanco\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.9\\microsoft.extensions.dependencyinjection.abstractions.10.0.9.nupkg.sha512",
     "C:\\Users\\pblanco\\.nuget\\packages\\microsoft.net.test.sdk\\17.14.1\\microsoft.net.test.sdk.17.14.1.nupkg.sha512",
     "C:\\Users\\pblanco\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.14.1\\microsoft.testplatform.objectmodel.17.14.1.nupkg.sha512",
     "C:\\Users\\pblanco\\.nuget\\packages\\microsoft.testplatform.testhost\\17.14.1\\microsoft.testplatform.testhost.17.14.1.nupkg.sha512",
