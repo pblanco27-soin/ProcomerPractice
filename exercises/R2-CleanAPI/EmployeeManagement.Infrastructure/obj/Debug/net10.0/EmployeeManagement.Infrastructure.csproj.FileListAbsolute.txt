@@ -1,0 +1,17 @@
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Infrastructure\bin\Debug\net10.0\EmployeeManagement.Infrastructure.deps.json
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Infrastructure\bin\Debug\net10.0\EmployeeManagement.Infrastructure.dll
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Infrastructure\bin\Debug\net10.0\EmployeeManagement.Infrastructure.pdb
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Infrastructure\bin\Debug\net10.0\EmployeeManagement.Application.dll
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Infrastructure\bin\Debug\net10.0\EmployeeManagement.Domain.dll
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Infrastructure\bin\Debug\net10.0\EmployeeManagement.Application.pdb
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Infrastructure\bin\Debug\net10.0\EmployeeManagement.Domain.pdb
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Infrastructure\obj\Debug\net10.0\EmployeeManagement.Infrastructure.csproj.AssemblyReference.cache
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Infrastructure\obj\Debug\net10.0\EmployeeManagement.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Infrastructure\obj\Debug\net10.0\EmployeeManagement.Infrastructure.AssemblyInfoInputs.cache
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Infrastructure\obj\Debug\net10.0\EmployeeManagement.Infrastructure.AssemblyInfo.cs
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Infrastructure\obj\Debug\net10.0\EmployeeManagement.Infrastructure.csproj.CoreCompileInputs.cache
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Infrastructure\obj\Debug\net10.0\Employee.66F3489C.Up2Date
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Infrastructure\obj\Debug\net10.0\EmployeeManagement.Infrastructure.dll
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Infrastructure\obj\Debug\net10.0\refint\EmployeeManagement.Infrastructure.dll
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Infrastructure\obj\Debug\net10.0\EmployeeManagement.Infrastructure.pdb
+C:\ProcomerPractice\exercises\R2-CleanAPI\EmployeeManagement.Infrastructure\obj\Debug\net10.0\ref\EmployeeManagement.Infrastructure.dll
