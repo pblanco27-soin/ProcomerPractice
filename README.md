@@ -2,7 +2,7 @@
 
 Repositorio de práctica para la prueba técnica del perfil **Programador**.
 
-El objetivo es preparar una solución alineada con la rúbrica de evaluación de PROCOMER, practicando análisis, presentación, microservicios, arquitectura limpia, SQL Server, Entity Framework, Dapper, pruebas y despliegue.
+El objetivo es preparar una solución alineada con la rúbrica de evaluación de PROCOMER, practicando análisis, presentación, microservicios, arquitectura limpia, SQL Server, Entity Framework, Dapper, pruebas, Docker y preparación conceptual para Azure.
 
 ---
 
@@ -39,6 +39,22 @@ El perfil de Programador requiere experiencia práctica en:
 | Buenas prácticas y unit tests | 5 |
 | Eficiencia y gestión del tiempo | 10 |
 | Cumplimiento general | 5 |
+
+---
+
+## Estado actual
+
+| Ejercicio | Estado | Enfoque |
+|---|---|---|
+| R0 | Completado | Análisis, diagramas y casos de uso |
+| R1 | Completado | ASP.NET MVC, Razor, jQuery y AJAX |
+| R1.5 | Completado | Unit tests y limpieza |
+| R2 | Completado | Web API + Clean Architecture |
+| R3 | Completado | SQL Server 2019 + Entity Framework Core |
+| R4 | Pendiente | Dapper + reportes SQL optimizados |
+| R5 | Pendiente / reducido | Angular + API REST |
+| R6 | Pendiente / prioritario | Docker + preparación Azure |
+| R7 | Pendiente | Simulacro técnico |
 
 ---
 
@@ -121,11 +137,29 @@ Ubicación:
 exercises/R2-CleanAPI
 ```
 
+Capas implementadas:
+
+```text
+EmployeeManagement.Domain
+EmployeeManagement.Application
+EmployeeManagement.Infrastructure
+EmployeeManagement.Api
+EmployeeManagement.Tests
+```
+
+Endpoints principales:
+
+```http
+GET  /api/Employees
+GET  /api/Employees/{id}
+POST /api/Employees
+```
+
 ---
 
-### R3 - SQL Server 2019 + Entity Framework / LINQ
+### R3 - SQL Server 2019 + Entity Framework Core
 
-Estado: pendiente.
+Estado: completado.
 
 Objetivo:
 
@@ -134,15 +168,44 @@ Objetivo:
 - Crear DbContext.
 - Crear migraciones.
 - Implementar repositorio EF.
-- Practicar consultas LINQ.
+- Persistir empleados en SQL Server.
+- Validar existencia de departamentos desde base de datos.
+- Crear endpoint de departamentos.
 
-Ubicación propuesta:
+Ubicación:
 
 ```text
 exercises/R2-CleanAPI
 ```
 
-Nota: R3 continuará sobre el proyecto R2 para reemplazar el repositorio en memoria por SQL Server + EF.
+Nota: R3 continúa sobre el proyecto R2 para evolucionar la infraestructura desde memoria hacia SQL Server + EF Core.
+
+Componentes agregados:
+
+```text
+EmployeeManagement.Infrastructure/Persistence
+EmployeeManagement.Infrastructure/Persistence/Entities
+EmployeeManagement.Infrastructure/Persistence/Configurations
+EmployeeManagement.Infrastructure/Persistence/Migrations
+EfEmployeeRepository
+EfDepartmentRepository
+EmployeeManagementDbContext
+```
+
+Endpoints agregados:
+
+```http
+GET /api/Departments
+GET /api/Departments/{id}
+```
+
+Comandos EF usados:
+
+```powershell
+dotnet ef migrations add InitialCreate --project .\EmployeeManagement.Infrastructure\EmployeeManagement.Infrastructure.csproj --startup-project .\EmployeeManagement.Api\EmployeeManagement.Api.csproj --output-dir Persistence\Migrations
+
+dotnet ef database update --project .\EmployeeManagement.Infrastructure\EmployeeManagement.Infrastructure.csproj --startup-project .\EmployeeManagement.Api\EmployeeManagement.Api.csproj
+```
 
 ---
 
@@ -155,38 +218,75 @@ Objetivo:
 - Instalar Dapper.
 - Crear consultas SQL directas.
 - Implementar reportes o consultas optimizadas.
-- Comparar EF vs Dapper.
+- Complementar EF Core con lecturas especializadas.
+- Comparar EF vs Dapper desde un punto de vista práctico.
+
+Ubicación propuesta:
+
+```text
+exercises/R2-CleanAPI
+```
+
+Plan mínimo:
+
+```http
+GET /api/Reports/employees-by-department
+GET /api/Reports/bonus-summary
+```
+
+Defensa técnica esperada:
+
+```text
+Entity Framework se usa para operaciones transaccionales y persistencia general.
+Dapper se usa para reportes y consultas SQL directas donde se requiere mayor control sobre joins, agregaciones y rendimiento.
+```
 
 ---
 
 ### R5 - Angular + API REST
 
-Estado: pendiente.
+Estado: pendiente / reducido.
 
 Objetivo:
 
-- Crear una UI Angular.
+- Crear una UI Angular básica.
 - Consumir API REST.
-- Implementar formularios reactivos.
-- Manejar validaciones y errores.
-- Mostrar empleados desde la API.
+- Listar empleados.
+- Consultar departamentos.
+- Crear empleados desde formulario.
+- Mostrar errores del API.
+
+Nota: debido a restricción de tiempo, este módulo puede resolverse en versión corta o dejarse como repaso conceptual, ya que la prioridad actual es reforzar Dapper, Docker y Azure.
 
 ---
 
 ### R6 - Microservicio completo con Docker y preparación Azure
 
-Estado: pendiente.
+Estado: pendiente / prioritario.
 
 Objetivo:
 
-- Integrar Clean Architecture, SQL Server, EF, Dapper y API REST.
-- Agregar Docker.
-- Preparar despliegue conceptual hacia Azure Container Apps.
-- Revisar Azure Service Bus y configuración cloud.
+- Agregar Dockerfile para la API.
+- Crear docker-compose conceptual con API y SQL Server.
+- Documentar variables de entorno.
+- Preparar explicación de despliegue hacia Azure Container Apps.
+- Documentar cómo se integraría Azure Service Bus.
+- Documentar una estrategia básica de Azure DevOps pipeline.
+
+Entregables mínimos esperados:
+
+```text
+Dockerfile
+docker-compose.yml
+README de despliegue
+Notas de Azure Container Apps
+Notas de Azure Service Bus
+Notas de Azure DevOps
+```
 
 ---
 
-### R7 - Simulacro PROCOMER 6 horas
+### R7 - Simulacro PROCOMER
 
 Estado: pendiente.
 
@@ -194,11 +294,20 @@ Objetivo:
 
 - Resolver un ejercicio completo contra reloj.
 - Generar análisis, prototipo, implementación, pruebas y defensa oral.
-- Practicar entrega antes de 4 horas y antes de 6 horas.
+- Practicar una entrega funcional en tiempo limitado.
+
+Versión recomendada por tiempo disponible:
+
+```text
+30 min análisis
+30 min diseño / casos de uso
+60-90 min implementación base
+30 min pruebas y defensa oral
+```
 
 ---
 
-## Estructura esperada del repositorio
+## Estructura actual del repositorio
 
 ```text
 ProcomerPractice/
@@ -211,27 +320,11 @@ ProcomerPractice/
     └── R2-CleanAPI/
 ```
 
+Nota: R2, R3, R4 y parte de R6 reutilizan el proyecto `R2-CleanAPI` para evolucionar progresivamente la misma solución backend.
+
 ---
 
 ## Comandos útiles
-
-### Compilar una solución
-
-```powershell
-dotnet build
-```
-
-### Ejecutar pruebas
-
-```powershell
-dotnet test
-```
-
-### Ejecutar una API
-
-```powershell
-dotnet run
-```
 
 ### Ejecutar R1
 
@@ -239,22 +332,49 @@ dotnet run
 dotnet run --project .\exercises\R1-MvcJqueryAjax\EmployeeManagement.Web\EmployeeManagement.Web.csproj
 ```
 
-### Ejecutar R2
+### Ejecutar R2 / R3 / R4 API
 
 ```powershell
 dotnet run --project .\exercises\R2-CleanAPI\EmployeeManagement.Api\EmployeeManagement.Api.csproj
 ```
 
+### Compilar y probar R1
+
+```powershell
+dotnet build .\exercises\R1-MvcJqueryAjax\EmployeeManagement.sln
+dotnet test .\exercises\R1-MvcJqueryAjax\EmployeeManagement.sln
+```
+
+### Compilar y probar R2 / R3 / R4
+
+```powershell
+dotnet build .\exercises\R2-CleanAPI\EmployeeManagement.sln
+dotnet test .\exercises\R2-CleanAPI\EmployeeManagement.sln
+```
+
 ### Crear migración EF
 
 ```powershell
-dotnet ef migrations add InitialCreate --project <InfrastructureProject> --startup-project <ApiProject>
+dotnet ef migrations add InitialCreate --project .\EmployeeManagement.Infrastructure\EmployeeManagement.Infrastructure.csproj --startup-project .\EmployeeManagement.Api\EmployeeManagement.Api.csproj --output-dir Persistence\Migrations
 ```
 
 ### Aplicar migración EF
 
 ```powershell
-dotnet ef database update --project <InfrastructureProject> --startup-project <ApiProject>
+dotnet ef database update --project .\EmployeeManagement.Infrastructure\EmployeeManagement.Infrastructure.csproj --startup-project .\EmployeeManagement.Api\EmployeeManagement.Api.csproj
+```
+
+### Crear branch de trabajo
+
+```powershell
+git checkout -b r4-dapper-reports
+```
+
+### Mergear branch hacia master
+
+```powershell
+git checkout master
+git merge <nombre-del-branch>
 ```
 
 ---
@@ -267,21 +387,17 @@ Desde la raíz del repositorio:
 cd C:\ProcomerPractice
 ```
 
-Compilar y probar R1:
+Ejecutar:
 
 ```powershell
 dotnet build .\exercises\R1-MvcJqueryAjax\EmployeeManagement.sln
 dotnet test .\exercises\R1-MvcJqueryAjax\EmployeeManagement.sln
-```
 
-Compilar y probar R2:
-
-```powershell
 dotnet build .\exercises\R2-CleanAPI\EmployeeManagement.sln
 dotnet test .\exercises\R2-CleanAPI\EmployeeManagement.sln
 ```
 
-Si tu carpeta real se llama `R2-CleanApi` en lugar de `R2-CleanAPI`, ajusta los comandos al nombre real.
+Si Windows bloquea DLLs generadas durante los tests, revisar la configuración de seguridad del sistema. En este entorno se detectó que el **Control inteligente de aplicaciones** podía bloquear ensamblados generados por `dotnet test`.
 
 ---
 
@@ -321,6 +437,40 @@ Antes de entregar una solución, revisar:
 - [ ] Existen pruebas unitarias o de integración básicas.
 - [ ] El código está ordenado y con nombres claros.
 - [ ] Se puede explicar la solución en pocos minutos.
+
+---
+
+## Defensa técnica resumida
+
+### Clean Architecture
+
+```text
+Domain contiene las reglas puras del negocio.
+Application orquesta casos de uso y define contratos.
+Infrastructure implementa acceso a datos y detalles técnicos.
+Api expone endpoints REST.
+```
+
+### EF Core
+
+```text
+Se utiliza para persistencia principal, migraciones, relaciones y operaciones transaccionales sobre SQL Server.
+```
+
+### Dapper
+
+```text
+Se utiliza para reportes o consultas SQL directas donde conviene controlar manualmente joins, agregaciones y rendimiento.
+```
+
+### Docker / Azure
+
+```text
+La API puede contenerizarse con Docker y desplegarse en Azure Container Apps.
+La configuración sensible debe manejarse mediante variables de entorno o secretos.
+Azure Service Bus puede usarse para comunicación asíncrona entre microservicios.
+Azure DevOps puede automatizar build, test y despliegue.
+```
 
 ---
 
