@@ -1,16 +1,21 @@
 using EmployeeManagement.Application.DTOs;
 using EmployeeManagement.Application.Interfaces;
 using EmployeeManagement.Domain.Entities;
+using EmployeeManagement.Domain.Exceptions;
 
 namespace EmployeeManagement.Application.Services;
 
 public class EmployeeApplicationService
 {
     private readonly IEmployeeRepository _employeeRepository;
+    private readonly IDepartmentRepository _departmentRepository;
 
-    public EmployeeApplicationService(IEmployeeRepository employeeRepository)
+    public EmployeeApplicationService(
+        IEmployeeRepository employeeRepository,
+        IDepartmentRepository departmentRepository)
     {
         _employeeRepository = employeeRepository;
+        _departmentRepository = departmentRepository;
     }
 
     public List<EmployeeResponse> GetAll()
@@ -35,6 +40,13 @@ public class EmployeeApplicationService
 
     public EmployeeResponse Create(CreateEmployeeRequest request)
     {
+        var department = _departmentRepository.GetById(request.DepartmentId);
+
+        if (department is null)
+        {
+            throw new DomainValidationException("El departamento indicado no existe.");
+        }
+
         var nextId = _employeeRepository.GetNextId();
 
         var employee = new Employee(

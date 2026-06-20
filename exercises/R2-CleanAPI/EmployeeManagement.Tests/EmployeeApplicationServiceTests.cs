@@ -2,6 +2,7 @@ using EmployeeManagement.Application.DTOs;
 using EmployeeManagement.Application.Interfaces;
 using EmployeeManagement.Application.Services;
 using EmployeeManagement.Domain.Entities;
+using EmployeeManagement.Domain.Exceptions;
 
 namespace EmployeeManagement.Tests;
 
@@ -10,9 +11,9 @@ public class EmployeeApplicationServiceTests
     [Fact]
     public void Create_WhenRequestIsValid_ReturnsCreatedEmployeeResponse()
     {
-        // Arrange
-        var repository = new FakeEmployeeRepository();
-        var service = new EmployeeApplicationService(repository);
+        var employeeRepository = new FakeEmployeeRepository();
+        var departmentRepository = new FakeDepartmentRepository();
+        var service = new EmployeeApplicationService(employeeRepository, departmentRepository);
 
         var request = new CreateEmployeeRequest
         {
@@ -23,10 +24,8 @@ public class EmployeeApplicationServiceTests
             HireDate = DateTime.Today.AddYears(-2)
         };
 
-        // Act
         var result = service.Create(request);
 
-        // Assert
         Assert.Equal(1, result.Id);
         Assert.Equal("Ana Morales", result.FullName);
         Assert.Equal("ana@empresa.com", result.Email);
@@ -36,11 +35,32 @@ public class EmployeeApplicationServiceTests
     }
 
     [Fact]
+    public void Create_WhenDepartmentDoesNotExist_ThrowsDomainValidationException()
+    {
+        var employeeRepository = new FakeEmployeeRepository();
+        var departmentRepository = new FakeDepartmentRepository();
+        var service = new EmployeeApplicationService(employeeRepository, departmentRepository);
+
+        var request = new CreateEmployeeRequest
+        {
+            FullName = "Ana Morales",
+            Email = "ana@empresa.com",
+            DepartmentId = 999,
+            MonthlySalary = 1_000_000m,
+            HireDate = DateTime.Today.AddYears(-2)
+        };
+
+        var exception = Assert.Throws<DomainValidationException>(() => service.Create(request));
+
+        Assert.Equal("El departamento indicado no existe.", exception.Message);
+    }
+
+    [Fact]
     public void GetAll_WhenEmployeesExist_ReturnsEmployees()
     {
-        // Arrange
-        var repository = new FakeEmployeeRepository();
-        var service = new EmployeeApplicationService(repository);
+        var employeeRepository = new FakeEmployeeRepository();
+        var departmentRepository = new FakeDepartmentRepository();
+        var service = new EmployeeApplicationService(employeeRepository, departmentRepository);
 
         service.Create(new CreateEmployeeRequest
         {
@@ -51,10 +71,8 @@ public class EmployeeApplicationServiceTests
             HireDate = DateTime.Today.AddYears(-2)
         });
 
-        // Act
         var result = service.GetAll();
 
-        // Assert
         Assert.Single(result);
         Assert.Equal("Ana Morales", result[0].FullName);
     }
@@ -62,9 +80,9 @@ public class EmployeeApplicationServiceTests
     [Fact]
     public void GetById_WhenEmployeeExists_ReturnsEmployee()
     {
-        // Arrange
-        var repository = new FakeEmployeeRepository();
-        var service = new EmployeeApplicationService(repository);
+        var employeeRepository = new FakeEmployeeRepository();
+        var departmentRepository = new FakeDepartmentRepository();
+        var service = new EmployeeApplicationService(employeeRepository, departmentRepository);
 
         var created = service.Create(new CreateEmployeeRequest
         {
@@ -75,10 +93,8 @@ public class EmployeeApplicationServiceTests
             HireDate = DateTime.Today.AddYears(-5)
         });
 
-        // Act
         var result = service.GetById(created.Id);
 
-        // Assert
         Assert.NotNull(result);
         Assert.Equal("Carlos Rojas", result!.FullName);
     }
@@ -86,14 +102,12 @@ public class EmployeeApplicationServiceTests
     [Fact]
     public void GetById_WhenEmployeeDoesNotExist_ReturnsNull()
     {
-        // Arrange
-        var repository = new FakeEmployeeRepository();
-        var service = new EmployeeApplicationService(repository);
+        var employeeRepository = new FakeEmployeeRepository();
+        var departmentRepository = new FakeDepartmentRepository();
+        var service = new EmployeeApplicationService(employeeRepository, departmentRepository);
 
-        // Act
         var result = service.GetById(999);
 
-        // Assert
         Assert.Null(result);
     }
 
@@ -125,6 +139,26 @@ public class EmployeeApplicationServiceTests
             }
 
             return _employees.Max(x => x.Id) + 1;
+        }
+    }
+
+    private class FakeDepartmentRepository : IDepartmentRepository
+    {
+        private readonly List<Department> _departments =
+        [
+            new Department(1, "TI"),
+            new Department(2, "Finanzas"),
+            new Department(3, "Operaciones")
+        ];
+
+        public List<Department> GetAll()
+        {
+            return _departments;
+        }
+
+        public Department? GetById(int id)
+        {
+            return _departments.FirstOrDefault(x => x.Id == id);
         }
     }
 }
