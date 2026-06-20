@@ -21,6 +21,7 @@ public static class ServiceCollectionExtensions
         });
 
         services.AddScoped<IEmployeeRepository, EfEmployeeRepository>();
+        services.AddScoped<IDepartmentRepository, EfDepartmentRepository>();
 
         return services;
     }
