@@ -22,6 +22,7 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<IEmployeeRepository, EfEmployeeRepository>();
         services.AddScoped<IDepartmentRepository, EfDepartmentRepository>();
+        services.AddScoped<IReportRepository, DapperReportRepository>();
 
         return services;
     }
