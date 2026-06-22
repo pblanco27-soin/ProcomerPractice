@@ -1,0 +1,28 @@
+services:
+  employee-management-api:
+    build:
+      context: .
+      dockerfile: EmployeeManagement.Api/Dockerfile
+    container_name: employee-management-api
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__EmployeeManagementDb: "Server=employee-management-sql;Database=EmployeeManagementDb;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;"
+    depends_on:
+      - employee-management-sql
+
+  employee-management-sql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: employee-management-sql
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "YourStrong!Passw0rd"
+    ports:
+      - "14333:1433"
+    volumes:
+      - employee-management-sql-data:/var/opt/mssql
+
+volumes:
+  employee-management-sql-data:
